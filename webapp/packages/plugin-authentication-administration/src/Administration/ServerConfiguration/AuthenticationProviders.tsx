@@ -38,7 +38,7 @@ export const AuthenticationProviders: PlaceholderComponent<IConfigurationPlaceho
     }
 
     if (configurationWizard) {
-      const disabledByFeature = provider.requiredFeatures.some(feat => !serverConfig.enabledFeatures?.includes(feat));
+      const disabledByFeature = Boolean(provider?.requiredFeatures.some(feat => !serverConfig.enabledFeatures?.includes(feat)));
 
       if (provider.configurable || disabledByFeature) {
         return false;
@@ -66,7 +66,7 @@ export const AuthenticationProviders: PlaceholderComponent<IConfigurationPlaceho
           serverConfig.enabledAuthProviders = serverConfig.enabledAuthProviders.filter(providerId => {
             const provider = providers.resource.get(providerId)!;
 
-            return !provider.requiredFeatures.some(feat => !serverConfig.enabledFeatures?.includes(feat));
+            return !provider?.requiredFeatures.some(feat => !serverConfig.enabledFeatures?.includes(feat));
           });
         }
       },
@@ -97,7 +97,7 @@ export const AuthenticationProviders: PlaceholderComponent<IConfigurationPlaceho
 
         {providerList.map(provider => {
           const links = authProviderService.getServiceDescriptionLinks(provider);
-          const disabled = provider.requiredFeatures.some(feat => !serverConfig.enabledFeatures?.includes(feat));
+          const disabled = Boolean(provider?.requiredFeatures.some(feat => !serverConfig.enabledFeatures?.includes(feat)));
           const tooltip = disabled ? `Following services need to be enabled: "${provider.requiredFeatures.join(', ')}"` : '';
 
           return (
