@@ -38,7 +38,7 @@ export const ParametersForm = observer<Props>(function ParametersForm({ config, 
         {translate('customConnection_custom_database')}
       </InputField>
       {requiresServerName && (
-        <InputField type="text" name="serverName" state={config} disabled={disabled} readOnly={readOnly} required>
+        <InputField type="text" name="serverName" state={config} disabled={disabled} readOnly={readOnly}>
           {translate('customConnection_custom_server_name')}
         </InputField>
       )}
